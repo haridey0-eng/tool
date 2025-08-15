@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SEO Analyzer Pro - Comprehensive SEO analysis tool for websites. Get keyword insights, backlink analysis, site audits, and competitor data.">
+    <title>SEO Analyzer Pro | Complete Website SEO Analysis Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #3b82f6;
+            --dark-color: #1e293b;
+            --medium-color: #64748b;
+            --light-color: #f8fafc;
+            --white: #ffffff;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --success-color: #10b981;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--medium-color);
+        }
+.subtitle, .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--medium-color);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+  }
+       .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(to bottom, #f8fafc, #ffffff);
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+          }
+      .search-box {
+            margin: 2rem 0;
+        }
+
+        .search-box form {
+            display: flex;
+            max-width: 600px;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-box button {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .example-text {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: var(--medium-color);
+        }
+
+        .example-text a {
+            color: var(--primary-color);
+            margin: 0 0.5rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+      .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--medium-color);
+        }
+
+        .badge i {
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card .icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card .icon i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: #f8fafc;
+            text-align: center;
+        }
+      .steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Results Preview */
+        .results-preview {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .results-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--medium-color);
+            position: relative;
+          }
+      tab-btn.active {
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .score-card {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .score-circle {
+            text-align: center;
+        }
+
+        .circle-progress {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+        }
+
+        .circle-progress svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 8;
+        }
+
+        .circle-progress-bar {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            stroke-dasharray: 283;
+            stroke-dashoffset: calc(283 - (283 * 78) / 100);
+            animation: circle-fill 1.5s ease-in-out;
+        }
+ @keyframes circle-fill {
+            from { stroke-dashoffset: 283; }
+        }
+
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .score-details {
+            flex: 1;
+        }
+
+        .score-metrics {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .metric-value.good {
+            color: var(--success-color);
+        }
+
+        .metric-value.medium {
+            color: var(--warning-color);
+        }
+
+        .metric-value.low {
+            color: var(--danger-color);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--medium-color);
+        }
+
+        .improvement-suggestions h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .suggestion {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .suggestion:hover {
+            transform: translateY(-3px);
+        }
+
+        .suggestion i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .suggestion h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .suggestion p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion a {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 5rem 0;
+            background-color: #f8fafc;
+            text-align: center;
+      }
+      .pricing-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            padding: 2.5rem 2rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--medium-color);
+        }
+
+        .pricing-card p {
+            margin-bottom: 1.5rem;
+            color: var(--medium-color);
+        }
+
+        .pricing-card ul {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card ul li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-card ul li i {
+            color: var(--success-color);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+      .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 4rem 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 1rem 0 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+/* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content, .hero-image {
+                flex: none;
+                width: 100%;
+            }
+            
+            .search-box form {
+                margin: 0 auto;
+            }
+            
+            .trust-badges {
+                justify-content: center;
+            }
+            
+            .score-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .score-metrics {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                margin-left: 0;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-box form {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                border-radius: var(--border-radius);
+                border-right: 1px solid #e2e8f0;
+                margin-bottom: 1rem;
+            }
+            
+            .search-box button {
+                border-radius: var(--border-radius);
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+          }
+       /* Dashboard Preview Image */
+        .dashboard-preview {
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0ZM20 36C11.163 36 4 28.837 4 20C4 11.163 11.163 4 20 4C28.837 4 36 11.163 36 20C36 28.837 28.837 36 20 36Z" fill="#2563EB"/>
+                        <path d="M20 12C15.582 12 12 15.582 12 20C12 24.418 15.582 28 20 28C24.418 28 28 24.418 28 20C28 15.582 24.418 12 20 12Z" fill="#2563EB"/>
+                        <text x="50" y="28" font-family="Inter" font-size="24" font-weight="700" fill="#1E293B">SEO Analyzer Pro</text>
+                    </svg>
+                </a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#resources">Resources</a>
+                    <div class="auth-buttons">
+                        <a href="/login" class="btn btn-outline">Log In</a>
+                        <a href="/signup" class="btn btn-primary">Sign Up Free</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Analyze & Improve Your Website SEO</h1>
+                    <p class="subtitle">Get comprehensive SEO insights with our powerful analysis tool. Improve rankings, fix issues, and outperform competitors.</p>
+                    
+                    <div class="search-box">
+                        <form id="seo-analysis-form">
+                            <input type="url" placeholder="Enter website URL (e.g., https://example.com)" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Analyze
+                            </button>
+                        </form>
+                        <p class="example-text">Try: <a href="#">example.com</a> or <a href="#">yourcompetitor.com</a></p>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Accurate Data</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure & Private</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-bolt"></i>
+                            <span>Fast Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/600x400/f8fafc/2563eb?text=SEO+Analyzer+Dashboard" alt="SEO Analyzer Pro Dashboard Preview" class="dashboard-preview" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Comprehensive SEO Analysis Tools</h2>
+                <p class="section-subtitle">Everything you need to optimize your website for search engines</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3>Keyword Analysis</h3>
+                        <p>Discover high-value keywords, track rankings, and analyze keyword difficulty and search volume.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Backlink Checker</h3>
+                        <p>Analyze your backlink profile, find linking opportunities, and monitor referring domains.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Site Audit</h3>
+                        <p>Comprehensive technical SEO audit with actionable recommendations for improvement.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3>Meta Tag Optimization</h3>
+                        <p>Analyze and optimize your meta titles and descriptions for better click-through rates.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Competitor Analysis</h3>
+                        <p>Benchmark against competitors and uncover their SEO strategies.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Content Optimization</h3>
+                        <p>Get recommendations to improve your content for better search visibility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How SEO Analyzer Pro Works</h2>
+                <p class="section-subtitle">Get actionable SEO insights in just 3 simple steps</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Enter Your URL</h3>
+                        <p>Simply enter your website URL or your competitor's URL to start the analysis.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Comprehensive Scan</h3>
+                        <p>Our system analyzes hundreds of SEO factors in real-time.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Get Results & Improve</h3>
+                        <p>Receive detailed reports with actionable recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-preview">
+            <div class="container">
+                <div class="results-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="keywords">Keywords</button>
+                    <button class="tab-btn" data-tab="backlinks">Backlinks</button>
+                    <button class="tab-btn" data-tab="technical">Technical SEO</button>
+                    <button class="tab-btn" data-tab="competitors">Competitors</button>
+                </div>
+                
+                <div class="tab-content active" id="overview">
+                    <div class="score-card">
+                        <div class="score-circle">
+                            <div class="circle-progress" data-value="78">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="circle-progress-bar" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="score-value">78</div>
+                            </div>
+                            <p>SEO Score</p>
+                        </div>
+                        <div class="score-details">
+                            <h3>Your SEO Health Summary</h3>
+                            <div class="score-metrics">
+                                <div class="metric">
+                                    <span class="metric-value good">92</span>
+                                    <span class="metric-value good">92</span>
+                                    <span class="metric-label">Technical SEO</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value medium">65</span>
+                                    <span class="metric-label">Content Quality</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value low">42</span>
+                                    <span class="metric-label">Backlinks</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">View Full Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="improvement-suggestions">
+                        <h3>Top Recommendations</h3>
+                        <div class="suggestions-grid">
+                            <div class="suggestion">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h4>Fix Broken Links</h4>
+                                <p>12 broken links detected that may hurt your rankings.</p>
+                                <a href="#">View details <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="suggestion">
+                                <i class="fas fa-tags"></i>
+                                <h4>Optimize Meta Tags</h4>
+                                <p>23 pages have missing or duplicate meta descriptions.</p>
+                                <a href="#">View details <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="suggestion">
+                                <i class="fas fa-image"></i>
+                                <h4>Optimize Images</h4>
+                                <p>47 images without alt text detected across your site.</p>
+                                <a href="#">View details <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="keywords">
+                    <div class="feature-card">
+                        <h3>Keyword Analysis Coming Soon</h3>
+                        <p>This section will display detailed keyword analysis for your website.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <h2>Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Choose the plan that fits your needs</p>
+                
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price">$29<span>/mo</span></div>
+                        <p>Perfect for small websites and blogs</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 50 reports/month</li>
+                            <li><i class="fas fa-check"></i> Basic keyword analysis</li>
+                            <li><i class="fas fa-check"></i> Site audit</li>
+                            <li><i class="fas fa-check"></i> 1 user</li>
+                        </ul>
+                        <button class="btn btn-outline">Get Started</button>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Professional</h3>
+                        <div class="price">$79<span>/mo</span></div>
+                        <p>For growing businesses and agencies</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 200 reports/month</li>
+                            <li><i class="fas fa-check"></i> Advanced keyword analysis</li>
+                            <li><i class="fas fa-check"></i> Competitor analysis</li>
+                            <li><i class="fas fa-check"></i> Backlink monitoring</li>
+                            <li><i class="fas fa-check"></i> 3 users</li>
+                        </ul>
+                        <button class="btn btn-primary">Get Started</button>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3>Enterprise</h3>
+                        <div class="price">$199<span>/mo</span></div>
+                        <p>For large businesses and SEO agencies</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited reports</li>
+                            <li><i class="fas fa-check"></i> All advanced features</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                            <li><i class="fas fa-check"></i> White-label reports</li>
+                            <li><i class="fas fa-check"></i> 10 users</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                        </ul>
+                        <button class="btn btn-outline">Get Started</button>
+                    </div>
+                </div>
+            </div>
+  </section>
+  <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Improve Your SEO?</h2>
+                <p>Join thousands of marketers and website owners who use SEO Analyzer Pro to boost their search rankings
